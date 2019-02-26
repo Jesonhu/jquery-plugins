@@ -32,13 +32,15 @@
 
   <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
   <!-- <script src="./resources/libs/divhover.js"></script> -->
-  <script src="./resources/js/jquery.hoverBorder.js"></script>
+  <!-- <script src="./resources/js/jquery.hoverBorder.js"></script> -->
+  <script src="./resources/js/0.1.0.js"></script>
   <script>
     $(function() {
-      $('.wrap1').hoverBorder({
+      const hoverBorder = $('.wrap1').hoverBorder({
         type: 'num3',
         color: 'yellow'
       });
+      console.log(hoverBorder);
     });
   </script>
 </body>
