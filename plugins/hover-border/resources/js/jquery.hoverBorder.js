@@ -28,7 +28,7 @@
       const self = this;
       return new Promise((resolve, reject) => {
         self.defaultOptions = {
-          type: 'num1',
+          type: 'num3',
           color: '#ff0000',
           speed: 300
         }
