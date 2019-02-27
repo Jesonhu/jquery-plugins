@@ -34,8 +34,8 @@
     initPosData(el) {
       this._$el = $(el);
       this._$hoverWrap = this._$el.find('.hover-wrap');
-      const n = this.moveSize = parseFloat(this._$el.height()) * this._options.percent;
       const from = this._options.from;
+      let n;
       switch (from) {
         case 'top':
           this.pos1 = 'top';
@@ -43,6 +43,7 @@
           this.size1 = 'height';
           this.size2 = 'width';
           this.movePos = 'top';
+          n = this.moveSize = parseFloat(this._$el.height()) * this._options.percent
           this.movePosValue = 'translate(0, -'+ n +'px)';
           break;
         case 'bottom':
@@ -51,6 +52,7 @@
           this.size1 = 'height';
           this.size2 = 'width';
           this.movePos = 'bottom';
+          n = this.moveSize = parseFloat(this._$el.height()) * this._options.percent
           this.movePosValue = 'translate(0, '+ n +'px)';
           break;
         case 'left':
@@ -59,6 +61,7 @@
           this.size1 = 'width';
           this.size2 = 'height';
           this.movePos = 'left';
+          n = this.moveSize = parseFloat(this._$el.width()) * this._options.percent
           this.movePosValue = 'translate(-'+ n +'px, 0)';
           break;
         case 'right':
@@ -67,6 +70,7 @@
           this.size1 = 'width';
           this.size2 = 'height';
           this.movePos = 'right';
+          n = this.moveSize = parseFloat(this._$el.width()) * this._options.percent
           this.movePosValue = 'translate('+ n +'px, 0)';
           break;
       }
@@ -82,7 +86,6 @@
       const size1 = this.size1;
       const size2 = this.size2;
       const movePosValue = this.movePosValue;
-      console.log('movePosValue', movePosValue);
       this._$el.css({
         position: 'relative',
         overflow: 'hidden',
@@ -148,7 +151,6 @@
     return $this.each((index, item) => {
       const $item = $(item);
       const plugin = new Plugin($item, options);
-      console.log(plugin);
     });
   }
 
