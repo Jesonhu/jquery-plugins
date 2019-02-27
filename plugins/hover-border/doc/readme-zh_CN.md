@@ -26,7 +26,7 @@ $('.wrap3').hoverBorder({
 ## 参数说明
 |属性|类型|说明|默认值|可选值|
 |--|--|--|:--:|:--:|
-|type| String | 可选, 边框出现的风格，目前只支持 `num3` | 'num3' | 'num1 ... numn ' |
+|type| String | 可选，边框出现的风格，目前只支持 `num3` | 'num3' | 'num1 ... numn ' |
 | color | String | 可选，边框的颜色 | #ff0000 | - |
 | speed | Number | 可选，边框动画持续时间 | 300 | - |
 
