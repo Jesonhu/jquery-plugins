@@ -1,7 +1,7 @@
 ## 使用方式
 + step1: 引入 jQuery and jquery.hoverBorder.js
 + step2: 调用
-```
+```html
 <!-- element -->
 <div class="wrap wrap1 hover-border">
   <img class="block" src="./resources/img/test.jpg" alt="">
@@ -14,6 +14,7 @@
 </div>
 
 <!-- script -->
+<script>
 $('.hover-border').hoverBorder({
   type: 'num3',
   color: 'green'
@@ -21,6 +22,7 @@ $('.hover-border').hoverBorder({
 $('.wrap3').hoverBorder({
   type: 'num3'
 });
+</script>
 ```
 
 ## 参数说明
@@ -48,6 +50,11 @@ $('.wrap3').hoverBorder({
 |情景|_setBorderSize|_setBorderPos|
 |--|:--:|--|
 |无边框| _defaultBorderWidth = 4px |0|
+
+## 友情提示
++ 1. 添加效果的容器必须原生是一个块级元素。本身为行内元素，通过 css 设置为块级元素的内容无效。why: 需要在元素内部创建子元素
++ 2. 添加效果的容器边框是可选择的。(没有边框：显示4px宽的边框；有边框，边框不大于4px: 显示4px宽的边框；有边框，边框大于4px：显示同边框宽度一样的边框)
++ 3. 添加效果的容器会被设置为 `position: relative; box-sizing: border-box`
 
 
 

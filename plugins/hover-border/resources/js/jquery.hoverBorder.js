@@ -1,7 +1,8 @@
 // ==================================================
 // hoverBorder 插件.
 //
-// @desc jQuery 插件；使用的元素必须原生是块级元素。例如 div 等。设置为块级元素的行内元素无效。
+// @desc 鼠标悬浮，边框显示或隐藏.
+// @desc 使用的元素必须原生是块级元素。例如 div 等。设置为块级元素的行内元素无效。
 // @author Jesonhu(github)
 // @update 2019/02/27
 // @inspire http://www.jq22.com/jquery-info15784
