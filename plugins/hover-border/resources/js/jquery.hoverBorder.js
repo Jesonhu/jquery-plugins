@@ -120,7 +120,6 @@
         this.divLeft = `<div style="${becurr} left: 0px; bottom:-${bPos}px; width: ${bSize}px;" class="divLeft">`;
         this.divRight = `<div style="${becurr} right: 0px; top:-${bPos}px; width: ${bSize}px;" class="divRight">`;
       }
-      console.log('this', self._$el[0].offsetWidth);
 
       $el.on('mouseenter', function() {
         const $this = $(this);
@@ -132,7 +131,6 @@
 
         const than = self.than();
         than.thsn();
-        console.log('self', self);
         self._$bTopBottom.animate({
           width: _w + _diff + 'px'
         }, options.speed);
