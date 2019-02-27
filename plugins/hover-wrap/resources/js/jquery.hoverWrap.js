@@ -151,6 +151,7 @@
     return $this.each((index, item) => {
       const $item = $(item);
       const plugin = new Plugin($item, options);
+      console.log(plugin);
     });
   }
 
