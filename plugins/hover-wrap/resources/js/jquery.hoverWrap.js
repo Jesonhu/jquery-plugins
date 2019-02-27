@@ -19,7 +19,7 @@
     
     initData(el, options) {
       this.initOptions(options);
-      this.initPosData();
+      this.initPosData(el);
       this.initView(el);
       this.initEvent();
     },
@@ -31,36 +31,43 @@
       }
       this._options = $.extend({}, this._defaultOptions, options);
     },
-    initPosData() {
+    initPosData(el) {
+      this._$el = $(el);
+      this._$hoverWrap = this._$el.find('.hover-wrap');
+      const n = this.moveSize = parseFloat(this._$el.height()) * this._options.percent;
       const from = this._options.from;
       switch (from) {
         case 'top':
           this.pos1 = 'top';
           this.pos2 = 'left';
-          this.movePos = 'top';
           this.size1 = 'height';
           this.size2 = 'width';
+          this.movePos = 'top';
+          this.movePosValue = 'translate(0, -'+ n +'px)';
           break;
         case 'bottom':
           this.pos1 = 'bottom';
           this.pos2 = 'left';
-          this.movePos = 'bottom';
           this.size1 = 'height';
           this.size2 = 'width';
+          this.movePos = 'bottom';
+          this.movePosValue = 'translate(0, '+ n +'px)';
           break;
         case 'left':
           this.pos1 = 'left';
           this.pos2 = 'top';
-          this.movePos = 'left';
           this.size1 = 'width';
           this.size2 = 'height';
+          this.movePos = 'left';
+          this.movePosValue = 'translate(-'+ n +'px, 0)';
           break;
         case 'right':
           this.pos1 = 'right';
           this.pos2 = 'top';
-          this.movePos = 'right';
           this.size1 = 'width';
           this.size2 = 'height';
+          this.movePos = 'right';
+          this.movePosValue = 'translate('+ n +'px, 0)';
           break;
       }
     },
@@ -68,14 +75,14 @@
       this.evnetHandle();
     },
     initView(el) {
-      this._$el = $(el);
-      this._$hoverWrap = this._$el.find('.hover-wrap');
       /** 文字容器所在的比例 */
-      const n = this.moveSize = parseFloat(this._$el.height()) * this._options.percent;
+      const n = this.moveSize;
       const pos1 = this.pos1;
       const pos2 = this.pos2;
       const size1 = this.size1;
       const size2 = this.size2;
+      const movePosValue = this.movePosValue;
+      console.log('movePosValue', movePosValue);
       this._$el.css({
         position: 'relative',
         overflow: 'hidden',
@@ -88,7 +95,17 @@
         [pos2]: 0,
         [size1]: n + 'px',
         [size2]: '100%'
-      })
+      });
+
+      // this._$hoverWrap.css({
+      //   position: 'absolute',
+      //   zIndex: 999999,
+      //   [pos1]: 0,
+      //   [pos2]: 0,
+      //   [size1]: n + 'px',
+      //   [size2]: '100%',
+      //   'transform': movePosValue
+      // })
     },
     get options() {
       return this._options;
@@ -97,17 +114,29 @@
       const $el = this._$el;
       const $hoverWrap = this._$hoverWrap;
       const movePos = this.movePos;
+      const movePosValue = this.movePosValue;
       const speed = this._options.speed;
       const n = this.moveSize;
 
+      
       $el.on('mouseenter', function() {
+        // Notice: want use transform but frustrating. jquery does't support animate with transform
+        // @see https://blog.csdn.net/zjsfdx/article/details/80813535
+        // $hoverWrap.stop().animate({
+        //   'transform': 'translate(0, 0)'
+        // }, speed);
+
         $hoverWrap.stop().animate({
-          [movePos]: 0
+          [movePos]: 0,
         }, speed);
       });
       $el.on('mouseleave', function() {
+        // $hoverWrap.stop().animate({
+        //   transform: movePosValue
+        // }, speed);
+
         $hoverWrap.stop().animate({
-          [movePos]: '-'+ n + 'px'
+          [movePos]: '-'+ n + 'px',
         }, speed);
       });
     }
@@ -119,6 +148,7 @@
     return $this.each((index, item) => {
       const $item = $(item);
       const plugin = new Plugin($item, options);
+      console.log(plugin);
     });
   }
 
